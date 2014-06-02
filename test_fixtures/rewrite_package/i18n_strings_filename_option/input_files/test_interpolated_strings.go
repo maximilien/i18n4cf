@@ -2,7 +2,6 @@ package input_files
 
 import (
 	"fmt"
-	"strings"
 )
 
 func Interpolated() string {
@@ -12,4 +11,7 @@ func Interpolated() string {
 	fmt.Println("Hello %s world!, bye from %s", name, myName)
 
 	fmt.Println("Hello %d(%s) world!, bye from %s", 10, name, "Evil")
+
+	args := []string{"oh no", "really?", "that's awful!!!"}
+	fmt.Println("%s %s %s", args...)
 }

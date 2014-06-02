@@ -10,5 +10,21 @@
    {
       "id": "Evil",
       "translation": "Evil"
+   },
+   {
+      "id": "oh no",
+      "translation": "oh no"
+   },
+   {
+      "id": "really?",
+      "translation": "really?"
+   },
+   {
+      "id": "that's awful!!!",
+      "translation": "that's awful!!!"
+   },
+   {
+      "id": "%s %s %s",
+      "translation": "%s %s %s"
    }
 ]
