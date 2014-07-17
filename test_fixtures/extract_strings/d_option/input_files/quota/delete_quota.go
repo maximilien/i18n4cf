@@ -1,77 +1,33 @@
 package quota
 
-import ()
+import (
+	"errors"
+	"fmt"
+)
 
 type DeleteQuota struct {
-	ui        terminal.UI
-	config    configuration.Reader
-	quotaRepo api.QuotaRepository
-	orgReq    requirements.OrganizationRequirement
 }
 
-func NewDeleteQuota(ui terminal.UI, config configuration.Reader, quotaRepo api.QuotaRepository) (cmd *DeleteQuota) {
-	cmd = new(DeleteQuota)
-	cmd.ui = ui
-	cmd.config = config
-	cmd.quotaRepo = quotaRepo
-	return
-}
-
-func (command *DeleteQuota) Metadata() command_metadata.CommandMetadata {
-	return command_metadata.CommandMetadata{
+func (command *DeleteQuota) Metadata() CommandMetadata {
+	return CommandMetadata{
 		Name:        "delete-quota",
 		Description: "Delete a quota",
 		Usage:       "CF_NAME delete-quota QUOTA [-f]",
-		Flags: []cli.Flag{
-			cli.BoolFlag{Name: "f", Usage: "Force deletion without confirmation"},
-		},
+		Flags:       fmt.Printf(BoolFlag{Name: "f", Usage: "Force deletion without confirmation"}),
 	}
 }
 
-func (cmd *DeleteQuota) GetRequirements(requirementsFactory requirements.Factory, c *cli.Context) (reqs []requirements.Requirement, err error) {
-	if len(c.Args()) != 1 {
-		err = errors.New("Incorrect Usage")
-		cmd.ui.FailWithUsage(c, "delete-quota")
-		return
-	}
-
-	reqs = []requirements.Requirement{
-		requirementsFactory.NewLoginRequirement(),
-	}
-	return
+func (cmd *DeleteQuota) GetRequirements() error {
+	err = errors.New("Incorrect Usage")
+	fmt.Printf("delete-quota")
 }
 
-func (cmd *DeleteQuota) Run(c *cli.Context) {
-	quotaName := c.Args()[0]
+func (cmd *DeleteQuota) Run() {
+	var quotaName, username string
 
-	if !c.Bool("f") {
-		response := cmd.ui.ConfirmDelete("quota", quotaName)
-		if !response {
-			return
-		}
-	}
+	fmt.Printf("f")
+	fmt.Printf("quota", quotaName)
+	fmt.Printf("Deleting quota %s as %s...", quotaName, username)
 
-	cmd.ui.Say("Deleting quota %s as %s...",
-		terminal.EntityNameColor(quotaName),
-		terminal.EntityNameColor(cmd.config.Username()),
-	)
-
-	quota, apiErr := cmd.quotaRepo.FindByName(quotaName)
-
-	switch (apiErr).(type) {
-	case nil: // no error
-	case *errors.ModelNotFoundError:
-		cmd.ui.Ok()
-		cmd.ui.Warn("Quota %s does not exist", quotaName)
-		return
-	default:
-		cmd.ui.Failed(apiErr.Error())
-	}
-
-	apiErr = cmd.quotaRepo.Delete(quota.Guid)
-	if apiErr != nil {
-		cmd.ui.Failed(apiErr.Error())
-	}
-
-	cmd.ui.Ok()
+	fmt.Printf("Quota %s does not exist", quotaName)
 }

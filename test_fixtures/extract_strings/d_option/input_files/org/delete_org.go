@@ -8,13 +8,6 @@ import (
 type DeleteOrg struct {
 }
 
-type CommandMetadata struct {
-	Name        string
-	ShortName   string
-	Description string
-	Usage       string
-}
-
 type BoolFlag struct {
 	Name  string
 	Usage string
