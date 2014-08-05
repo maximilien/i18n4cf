@@ -246,6 +246,9 @@ func init() {
 
 	flag.StringVar(&options.InitCodeSnippetFilenameFlag, "init-code-snippet-filename", "", "[optional] the path to a file containing the template snippet for the code that is used for go-i18n initialization")
 
+	flag.StringVar(&options.OldStringFlag, "old-string", "", "the old string value that will be modified")
+	flag.StringVar(&options.NewStringFlag, "new-string", "", "the new value for the string that is modified")
+
 	flag.Parse()
 }
 
@@ -351,6 +354,19 @@ usage: gi18n -c checkup
   FIXUP:
 
   -c fixup                   the fixup command which interactively lets users add, update, or remove translations keys from code and resource files.
+
+  MODIFY-STRING:
+
+  -c modify-string           the modify string command
+
+  --old-string				 the old string value that will be modified
+  --new-string				 the new value for the string that is modified
+
+  -f                         the source go file
+  -d                         the directory containing the go files to rewrite
+
+  --i18n-strings-filename    a JSON file with the strings that should be i18n enabled, and that needs to be renamed
+  --i18n-strings-dirname     a directory with the extracted JSON files where all strings matching the old string name will be renamed 
 `
 	fmt.Println(usageString)
 }
