@@ -34,6 +34,8 @@ func main() {
 		verifyStringsCmd()
 	case "merge-strings":
 		mergeStringsCmd()
+	case "modify-string":
+		modifyStringCmd()
 	case "show-missing-strings":
 		showMissingStringsCmd()
 	case "checkup":
@@ -204,6 +206,11 @@ func fixupCmd() {
 
 	duration := time.Now().Sub(startTime)
 	fixup.Println("Total time:", duration)
+}
+
+func modifyStringCmd() {
+	fmt.Println("Implement me!")
+	os.Exit(0)
 }
 
 func init() {

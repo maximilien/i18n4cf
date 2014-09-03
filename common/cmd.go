@@ -38,6 +38,7 @@ type Options struct {
 	InitCodeSnippetFilenameFlag string
 
 	OldStringFlag string
+	NewStringFlag string
 }
 
 type I18nStringInfo struct {
