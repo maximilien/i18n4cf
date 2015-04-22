@@ -30,6 +30,21 @@ func NewMergeStrings(options common.Options) MergeStrings {
 	}
 }
 
+func (ms *MergeStrings) UsageExample() string {
+	return `usage: i18n4go -c merge-strings [-v] [-r] [--source-language <language>] -d <dirName>`
+}
+
+func (ms *MergeStrings) Usage() string {
+	return `  MERGE STRINGS:
+
+  -c merge-strings           the merge strings command which merges multiple <filename>.go.<language>.json files into a <language>.all.json
+
+  -r                         [optional] recursesively combine files from all subdirectories
+  --source-language          [optional] the source language of the file, typically also part of the file name, e.g., "en_US" (default to 'en')
+
+  -d                         the directory containing the json files to combine`
+}
+
 func (ms *MergeStrings) Options() common.Options {
 	return ms.options
 }

@@ -7,5 +7,7 @@ import (
 type CommandInterface interface {
 	common.PrinterInterface
 	Options() common.Options
+	UsageExample() string
+	Usage() string
 	Run() error
 }

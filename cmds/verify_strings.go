@@ -32,6 +32,25 @@ func NewVerifyStrings(options common.Options) verifyStrings {
 	}
 }
 
+func (vs *verifyStrings) UsageExample() string {
+	return `usage: i18n4go -c verify-strings [-v] [--source-language <language>] -f <sourceFileName> --language-files <language files>
+   or: i18n4go -c verify-strings [-v] [--source-language <language>] -f <sourceFileName> --languages <lang1,lang2,...>`
+}
+
+func (vs *verifyStrings) Usage() string {
+	return `  VERIFY-STRINGS:
+
+  -c verify-strings          the verify strings command
+
+  --source-language          [optional] the source language of the source translation file (default to 'en')
+
+  -f                         the source translation file
+
+  --language-files           a comma separated list of target files for different languages to compare, e.g., "en, en_US, fr_FR, es"
+                             if not specified then the languages flag is used to find target files in same directory as source
+  --languages                a comma separated list of valid languages with optional territory, e.g., "en, en_US, fr_FR, es"`
+}
+
 func (vs *verifyStrings) Options() common.Options {
 	return vs.options
 }

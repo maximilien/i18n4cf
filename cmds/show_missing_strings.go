@@ -33,6 +33,19 @@ func NewShowMissingStrings(options common.Options) ShowMissingStrings {
 	}
 }
 
+func (sms *ShowMissingStrings) UsageExample() string {
+	return `usage: i18n4go -c show-missing-strings [-v] -d <dirName> --i18n-strings-filename <language file>`
+}
+
+func (sms *ShowMissingStrings) Usage() string {
+	return `  SHOW-MISSING-STRINGS:
+
+  -c show-missing-strings    the missing strings command
+
+  -d                         the directory containing the go files to validate
+  --i18n-strings-filename    a JSON file with the strings that should be i18n enabled, typically the output of -extract-strings command`
+}
+
 func (sms *ShowMissingStrings) Options() common.Options {
 	return sms.options
 }

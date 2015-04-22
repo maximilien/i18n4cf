@@ -88,6 +88,26 @@ func NewRewritePackage(options common.Options) rewritePackage {
 	}
 }
 
+func (rp *rewritePackage) UsageExample() string {
+	return `usage: i18n4go -c rewrite-package [-v] [-r] -d <dirName> [--i18n-strings-filename <fileName> | --i18n-strings-dirname <dirName>] [--init-code-snippet-filename <fileName>]
+   or: i18n4go -c rewrite-package [-v] [-r] -f <fileName> --i18n-strings-filename <fileName> [--init-code-snippet-filename <fileName>]`
+}
+
+func (rp *rewritePackage) Usage() string {
+	return `  REWRITE-PACKAGE:
+
+  -c rewrite-package         the rewrite package command
+  -f                         the source go file to be rewritten
+  -d                         the directory containing the go files to rewrite
+
+  --i18n-strings-filename    a JSON file with the strings that should be i18n enabled, typically the output of -extract-strings command
+  --i18n-strings-dirname     a directory with the extracted JSON files, using -output-match-package with -extract-strings this directory should match the input files package name
+  --root-path                the root path to the Go source files whose packages are being rewritten, defaults to working directory, if not specified
+
+  --init-code-snippet-filename [optional] the path to a file containing the template snippet for the code that is used for go-i18n initialization"
+  -o                           [optional] output diretory for rewritten file. If not specified, the original file will be overwritten`
+}
+
 func (rp *rewritePackage) Options() common.Options {
 	return rp.options
 }

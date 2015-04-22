@@ -33,6 +33,16 @@ func NewFixup(options common.Options) Fixup {
 	}
 }
 
+func (fix *Fixup) UsageExample() string {
+	return `usage: i18n4go -c fixup`
+}
+
+func (fix *Fixup) Usage() string {
+	return `  FIXUP:
+
+  -c fixup                   the fixup command which interactively lets users add, update, or remove translations keys from code and resource files.`
+}
+
 func (fix *Fixup) Options() common.Options {
 	return fix.options
 }

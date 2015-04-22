@@ -17,12 +17,25 @@ const VERSION = "v0.2.0"
 
 var options common.Options
 
+var cmdsMap map[string]cmds.CommandInterface
+
 func main() {
 	defer handlePanic()
 
 	if options.HelpFlag || options.LongHelpFlag {
 		usage()
 		return
+	}
+
+	cmdsMap = map[string]cmds.CommandInterface{
+		"extract-strings":      cmds.NewExtractStrings(common.Options{}),
+		"create-translations":  cmds.NewCreateTranslations(common.Options{}),
+		"rewrite-package":      cmds.NewRewritePackage(common.Options{}),
+		"verify-strings":       cmds.NewVerifyStrings(common.Options{}),
+		"merge-strings":        cmds.NewMergeStrings(common.Options{}),
+		"show-missing-strings": cmds.NewShowMissingStrings(common.Options{}),
+		"checkup":              cmds.NewCheckup(common.Options{}),
+		"fixup":                cmds.NewFixup(common.Options{}),
 	}
 
 	switch options.CommandFlag {
@@ -270,8 +283,14 @@ usage: i18n4go -c show-missing-strings [-v] -d <dirName> --i18n-strings-filename
 
 usage: i18n4go -c checkup
 
+usage: i18n4go -c fixup
+
+Other:
+
   -h | --help                prints the usage
   -v                         verbose
+
+Details:
 
   EXTRACT-STRINGS:
 

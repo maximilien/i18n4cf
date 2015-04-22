@@ -62,6 +62,34 @@ func NewExtractStrings(options common.Options) extractStrings {
 		IgnoreRegexp:     compiledRegexp}
 }
 
+func (es *extractStrings) UsageExample() string {
+	return `usage: i18n4go -c extract-strings [-vpe] [--dry-run] [--output-flat|--output-match-package|-o <outputDir>] -f <fileName>
+   or: i18n4go -c extract-strings [-vpe] [--dry-run] [--output-flat|--output-match-package|-o <outputDir>] -d <dirName> [-r] [--ignore-regexp <fileNameRegexp>]`
+}
+
+func (es *extractStrings) Usage() string {
+	return `  EXTRACT-STRINGS:
+
+  -c extract-strings         the extract strings command
+
+  --po                       to generate standard .po files for translation
+  -e                         [optional] the JSON file with strings to be excluded, defaults to excluded.json if present
+  --meta                     [optional] create a *.extracted.json file with metadata such as: filename, directory, and positions of the strings in source file
+  --dry-run                  [optional] prevents any output files from being created
+
+
+  --output-flat              generated files are created in the specified output directory (default)
+  --output-match-package     generated files are created in directory to match the package name
+  -o                         the output directory where the translation files will be placed
+
+  -f                         the go file name to extract strings
+
+  -d                         the directory containing the go files to extract strings
+
+  -r                         [optional] recursesively extract strings from all subdirectories
+  --ignore-regexp            [optional] a perl-style regular expression for files to ignore, e.g., ".*test.*"`
+}
+
 func (es *extractStrings) Options() common.Options {
 	return es.options
 }

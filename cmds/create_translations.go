@@ -54,6 +54,23 @@ func NewCreateTranslations(options common.Options) createTranslations {
 		TotalFiles:     0}
 }
 
+func (ct *createTranslations) UsageExample() string {
+	return `usage: i18n4go -c create-translations [-v] [--google-translate-api-key <api key>] [--source-language <language>] -f <fileName> --languages <lang1,lang2,...> -o <outputDir>`
+}
+
+func (ct *createTranslations) Usage() string {
+	return `CREATE-TRANSLATIONS:
+
+  -c create-translations     the create translations command
+
+  --google-translate-api-key [optional] your public Google Translate API key which is used to generate translations (charge is applicable)
+  --source-language          [optional] the source language of the file, typically also part of the file name, e.g., \"en_US\"
+
+  -f                         the source translation file
+  --languages                a comma separated list of valid languages with optional territory, e.g., \"en, en_US, fr_FR, es\"
+  -o                         the output directory where the newly created translation files will be placed`
+}
+
 func (ct *createTranslations) Options() common.Options {
 	return ct.options
 }

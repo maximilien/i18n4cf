@@ -28,6 +28,16 @@ func NewCheckup(options common.Options) Checkup {
 	}
 }
 
+func (cu *Checkup) UsageExample() string {
+	return `usage: i18n4go -c checkup`
+}
+
+func (cu *Checkup) Usage() string {
+	return `  CHECKUP:
+
+  -c checkup                 the checkup command which ensures that the strings in code match strings in resource files and vice versa`
+}
+
 func (cu *Checkup) Options() common.Options {
 	return cu.options
 }
